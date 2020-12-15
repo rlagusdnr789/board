@@ -19,7 +19,7 @@
 	System.out.println("currentPage :" +currentPage);
 	//전체 게시글의 수를 구하는 코드	
 	int totalRowCount = 0;
-	String dbUrl = "jdbc:mysql://127.0.0.1:3306/jjdev?useUnicode=true&characterEncoding=euckr";
+	String dbUrl = "jdbc:mariadb://127.0.0.1:3306/jjdev?useUnicode=true&characterEncoding=euckr";
 	String dbUser = "root";
 	String dbPw = "java1004";
 	Connection connection = null;
@@ -28,8 +28,8 @@
 	ResultSet totalResultSet = null;
 	ResultSet listResultSet = null;
 	try{
-		Class.forName("com.mysql.jdbc.Driver");
-		connection = DriverManager.getConnection("jdbc:mariadb://127.0.0.1:3306/gugudan ","root","java1004");
+		Class.forName("org.mariadb.jdbc.Driver");
+		connection = DriverManager.getConnection("jdbc:mariadb://127.0.0.1:3306/board","root","java1004");
 		
 		String totalSql = "SELECT COUNT(*) FROM board"; // board테이블의 전체 행의 수를 반환
 		totalStatement = connection.prepareStatement(totalSql);
@@ -41,7 +41,7 @@
 	<div>전체행의 수 : <%=totalRowCount%></div>
 <%
 	int pagePerRow = 10; //페이지당 보여줄 글의 목록을 10개로 설정
-	String listSql = "SELECT board_no,board_title,board_user,board_date FROM ORDER BY board_no DESC LIMIT?,?";
+	String listSql = "SELECT board_no, board_title, board_user, board_date FROM board ORDER BY board_no DESC LIMIT ?,?";
 	listStatement = connection.prepareStatement(listSql);
 	listStatement.setInt(1, (currentPage-1)*pagePerRow); //현재페이지가1페이면0행부터 2페이지면 10행부터
 	listStatement.setInt(2, pagePerRow);
