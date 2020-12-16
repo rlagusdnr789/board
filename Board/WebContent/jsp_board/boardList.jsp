@@ -30,7 +30,6 @@
 	try{
 		Class.forName("org.mariadb.jdbc.Driver");
 		connection = DriverManager.getConnection("jdbc:mariadb://127.0.0.1:3306/board","root","java1004");
-		
 		String totalSql = "SELECT COUNT(*) FROM board"; // board테이블의 전체 행의 수를 반환
 		totalStatement = connection.prepareStatement(totalSql);
 		totalResultSet = totalStatement.executeQuery();
