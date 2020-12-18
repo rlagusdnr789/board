@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 <h1>BOARD VIEW</h1>
@@ -30,6 +31,7 @@
 			resultSet= statement.executeQuery();
 			if(resultSet.next()){
 %>				
+				<div class="container p-3 my-3 bg-dark text-white">
 				<div>board_no :</div>
 				<div><%=boardNo%></div>
 				<div>board_title :</div>
@@ -40,8 +42,9 @@
 				<div><%=resultSet.getString("board_date")%></div>
 		 
 		 		<div>
-                    <a href="<%=request.getContextPath()%>/jsp_board/boardModifyForm.jsp?boardNo=<%=boardNo%>">수정</a>
-                    <a href="<%=request.getContextPath()%>/jsp_board/boardRemoveForm.jsp?boardNo=<%=boardNo%>">삭제</a>
+                  <a class="btn btn-primary" href="<%=request.getContextPath()%>/jsp_board/boardModifyForm.jsp?boardNo=<%=boardNo%>">수정</a>
+                  <a class="btn btn-primary" href="<%=request.getContextPath()%>/jsp_board/boardRemoveForm.jsp?boardNo=<%=boardNo%>">삭제</a>
+                </div>
                 </div>
 			
 <%		}
